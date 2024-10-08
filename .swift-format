@@ -22,8 +22,8 @@
   "prioritizeKeepingFunctionOutputTogether" : false,
   "respectsExistingLineBreaks" : true,
   "rules" : {
-    "AllPublicDeclarationsHaveDocumentation" : false,
-    "AlwaysUseLiteralForEmptyCollectionInit" : false,
+    "AllPublicDeclarationsHaveDocumentation" : true,
+    "AlwaysUseLiteralForEmptyCollectionInit" : true,
     "AlwaysUseLowerCamelCase" : true,
     "AmbiguousTrailingClosureOverload" : true,
     "BeginDocumentationCommentWithOneLineSummary" : false,
