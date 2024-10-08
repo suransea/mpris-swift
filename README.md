@@ -10,7 +10,7 @@ A library for interacting with [MPRIS](https://specifications.freedesktop.org/mp
 
 ## Documentation
 
-The [API Documentation](https://swiftpackageindex.com/suransea/mpris-swift/main/documentation/dbus) is available on Swift Package Index.
+The [API Documentation](https://swiftpackageindex.com/suransea/mpris-swift/main/documentation/mpris) is available on Swift Package Index.
 
 ## Example
 
