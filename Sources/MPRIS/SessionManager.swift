@@ -63,20 +63,8 @@ extension MediaPlayer2.SessionManager {
   public convenience init(
     connection: Connection, timeout: TimeoutInterval = .useDefault
   ) throws {
-    let bus = Bus(connection: connection, timeout: timeout)
-    try bus.addMatch(
-      MatchRule(
-        type: .signal, path: .bus,
-        interface: .bus, member: "NameOwnerChanged"
-      )
-    )
-    try bus.addMatch(
-      MatchRule(
-        type: .signal, path: .mediaPlayer2,
-        interface: .properties, member: "PropertiesChanged"
-      )
-    )
     self.init()
+    let bus = Bus(connection: connection, timeout: timeout)
     let disconnect = try bus.nameOwnerChanged { [weak self] (name, oldOwner, newOwner) in
       guard let self = self else { return }
       guard name.rawValue.hasPrefix(BusName.mediaPlayer2Prefix) else { return }

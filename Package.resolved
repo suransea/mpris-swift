@@ -1,13 +1,13 @@
 {
-  "originHash" : "46437c4775f668187a3ead20312a8de66b074efad470a1d4ed4b8e81f86385ba",
+  "originHash" : "0513b1128f2db3211db46176b1937e455c03c8dcfb6953a51ec576bf9ff1074e",
   "pins" : [
     {
       "identity" : "dbus-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/suransea/dbus-swift",
       "state" : {
-        "revision" : "59aaab503f4a023029c868a9a6972245ee46f2d2",
-        "version" : "0.0.3"
+        "revision" : "9b17cce66bd67a75a88e5f609bd227dc5069cbb1",
+        "version" : "0.0.5"
       }
     },
     {
