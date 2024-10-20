@@ -1,58 +1,29 @@
 import DBus
 import Foundation
+import Observation
 
 extension MediaPlayer2 {
   /// The `SessionManager` class is responsible for managing multiple
   /// instances of `MediaPlayer2` and handling their state changes.
+  @Observable
+  @available(macOS 14.0, *)
   public class SessionManager {
+    @ObservationIgnored
     private var cancellables: [BusName: [() throws -> Void]] = [:]
-    private var playersChangedObservers: [UUID: ([MediaPlayer2]) -> Void] = [:]
-    private var activePlayerChangedObservers: [UUID: (MediaPlayer2?) -> Void] = [:]
 
     /// A list of current media players.
-    public private(set) var players: [MediaPlayer2] = [] {
-      didSet {
-        playersChangedObservers.values.forEach { $0(players) }
-      }
-    }
+    public private(set) var players: [MediaPlayer2] = []
 
     /// The active player, i.e. the player that is currently playing.
-    public var activePlayer: MediaPlayer2? {
-      didSet {
-        activePlayerChangedObservers.values.forEach { $0(activePlayer) }
-      }
-    }
+    public private(set) var activePlayer: MediaPlayer2?
 
     deinit {
       cancellables.values.forEach { $0.forEach { try? $0() } }
     }
-
-    /// Observes the list of media players for changes.
-    ///
-    /// - Parameter observer: The observer to be called when the list of media players changes.
-    /// - Returns: A function that unregisters the observer.
-    public func observePlayers(
-      _ observer: @escaping ([MediaPlayer2]) -> Void
-    ) -> () -> Void {
-      let id = UUID()
-      playersChangedObservers[id] = observer
-      return { self.playersChangedObservers.removeValue(forKey: id) }
-    }
-
-    /// Observes the active player for changes.
-    ///
-    /// - Parameter observer: The observer to be called when the active player changes.
-    /// - Returns: A function that unregisters the observer.
-    public func observeActivePlayer(
-      _ observer: @escaping (MediaPlayer2?) -> Void
-    ) -> () -> Void {
-      let id = UUID()
-      activePlayerChangedObservers[id] = observer
-      return { self.activePlayerChangedObservers.removeValue(forKey: id) }
-    }
   }
 }
 
+@available(macOS 14.0, *)
 extension MediaPlayer2.SessionManager {
   /// Initializes a new session manager.
   ///
